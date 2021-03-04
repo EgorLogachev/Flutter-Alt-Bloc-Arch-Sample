@@ -6,7 +6,7 @@ import 'package:archsampleapp/data/repositories/auth_repository.dart';
 import 'package:archsampleapp/data/repositories/connection_repository.dart';
 import 'package:archsampleapp/data/repositories/contacts_repository.dart';
 
-class Dependencies {
+mixin Dependencies {
 
   NetworkService _networkService;
   AuthApi _authApi;
@@ -29,4 +29,6 @@ class Dependencies {
   ConnectionRepository get connectionRepository => _connectionRepository ??= ConnectionRepository(connectionApi);
 
   ContactsRepository get contactsRepository => _contactsRepository ??= ContactsRepository(contactsApi);
+
+
 }

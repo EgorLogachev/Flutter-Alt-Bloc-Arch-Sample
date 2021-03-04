@@ -12,7 +12,7 @@ class AuthRouter extends ScreenRouter {
   static const closeScreenRoute = '/closeScreen';
   static const closeAppRoute = '/closeAppRoute';
 
-  static final _routesMapper = <String, Router>{
+  static final _routesMapper = <String, BlocRouter>{
     contactsRoute : (context, routeName, args) {
       return Navigator.of(context).pushReplacementNamed(routeName, arguments: args);
     },

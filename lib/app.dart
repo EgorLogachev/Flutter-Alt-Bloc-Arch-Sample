@@ -7,9 +7,17 @@ import 'package:flutter/material.dart';
 import 'dependencies.dart';
 import 'screens/auth/auth_screen.dart';
 
-class SampleApp extends StatelessWidget with Dependencies {
+class SampleApp extends StatefulWidget {
 
-  SampleApp({Key key}) : super(key: key) {
+  const SampleApp({Key key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _SampleAddState();
+}
+
+class _SampleAddState extends State<SampleApp> with Dependencies {
+
+  _SampleAddState() {
     _routes = <String, WidgetBuilder>{
       AuthScreen.routeName : AuthScreen.builder(authRepository),
       ContactsScreen.routeName : ContactsScreen.builder(contactsRepository, connectionRepository),
@@ -31,5 +39,6 @@ class SampleApp extends StatelessWidget with Dependencies {
       routes: _routes,
     );
   }
+
 }
 

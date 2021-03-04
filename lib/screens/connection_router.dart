@@ -10,7 +10,7 @@ class ConnectionRouter extends ScreenRouter {
 
   static const connectionRoute = ConnectionScreen.routeName;
 
-  static final _routesMapper = <String, Router>{
+  static final _routesMapper = <String, BlocRouter>{
     connectionRoute : (context, routeName, args) {
       return Navigator.of(context).pushNamed(routeName, arguments: args);
     },

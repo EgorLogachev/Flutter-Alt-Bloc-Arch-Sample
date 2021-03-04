@@ -8,7 +8,7 @@ class ContactsRouter extends ConnectionRouter {
 
   static const contactDetailsRoute = ContactDetailsScreen.routeName;
 
-  static final _routesMapper = <String, Router>{
+  static final _routesMapper = <String, BlocRouter>{
     contactDetailsRoute : (context, routeName, args) {
       return Navigator.of(context).pushNamed(routeName, arguments: args);
     }

@@ -22,7 +22,7 @@ mixin ErrorsRouter implements BaseRouter {
   static const unauthorizedErrorRoute = '/unauthorized-error';
   static const unexpectedErrorRoute = '/unexpected-error';
 
-  static final _routesMapper = <String, Router>{
+  static final _routesMapper = <String, BlocRouter>{
     connectionErrorRoute : (context, routeName, args) => showConnectionErrorDialog(context),
     unauthorizedErrorRoute : (context, routeName, args) => Navigator.of(context).pushNamed(AuthScreen.routeName, arguments: args),
     unexpectedErrorRoute : (context, routeName, args) => showUnexpectedErrorDialog(context),
