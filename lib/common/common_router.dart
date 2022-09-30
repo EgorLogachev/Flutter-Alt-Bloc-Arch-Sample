@@ -25,7 +25,7 @@ mixin ErrorsRouter implements BaseRouter {
 
   static final _routesMapper = <String, BlocRouter>{
     connectionErrorRoute : (context, routeName, args) => showConnectionErrorDialog(context),
-    unauthorizedErrorRoute : (context, routeName, args) => Navigator.of(context).pushNamed(AuthScreen.routeName, arguments: args),
+    unauthorizedErrorRoute : (context, routeName, args) => Navigator.of(context).pushNamed(AuthRoute.name, arguments: args),
     unexpectedErrorRoute : (context, routeName, args) => showUnexpectedErrorDialog(context),
   };
 

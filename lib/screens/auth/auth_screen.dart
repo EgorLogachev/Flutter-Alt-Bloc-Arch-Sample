@@ -6,17 +6,32 @@ import 'auth_bloc.dart';
 import 'auth_layout.dart';
 import 'auth_router.dart';
 
-class AuthScreen {
+class AuthRoute extends MaterialPageRoute {
 
-  static const routeName = '/auth';
+  static const name = '/auth';
 
-  static WidgetBuilder builder(AuthRepository repository) => (context) {
-    //todo change this
+  AuthRoute(AuthRepository repository, RouteSettings settings)
+      : super(
+            builder: (_) => _AuthScreenWidget(
+                  repository: repository,
+                ),
+            settings: settings);
+}
+
+class _AuthScreenWidget extends StatelessWidget {
+
+  final AuthRepository repository;
+
+  const _AuthScreenWidget({super.key, required this.repository});
+
+  @override
+  Widget build(BuildContext context) {
     final extraData = ModalRoute.of(context)?.settings.arguments;
     return BlocProvider(
       child: AuthLayout(),
       create: () => AuthBloc(repository, extraData: extraData),
       router: AuthRouter().onRoute,
     );
-  };
+  }
 }
+

@@ -4,9 +4,16 @@ import 'package:archsampleapp/data/mock_data_generator.dart';
 import 'package:archsampleapp/data/network/network_errors.dart';
 import 'package:archsampleapp/data/network/network_service.dart';
 
-class ConnectionApi {
+abstract class ConnectionApi {
 
-  ConnectionApi(this._networkService);
+  factory ConnectionApi(NetworkService _networkService) = _MockedConnectionApiImpl;
+
+  Future<int> fetchSession();
+}
+
+class _MockedConnectionApiImpl implements ConnectionApi {
+
+  _MockedConnectionApiImpl(this._networkService);
 
   final NetworkService _networkService;
 

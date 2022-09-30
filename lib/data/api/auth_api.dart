@@ -4,9 +4,16 @@ import 'package:archsampleapp/data/network/network_service.dart';
 import '../mock_data_generator.dart';
 import 'auth_api_error.dart';
 
-class AuthApi {
+abstract class AuthApi {
 
-  AuthApi(this._networkService);
+  factory AuthApi(NetworkService networkService) = _MockedAuthApiImpl;
+
+  Future<String> signIn(String email, String password);
+}
+
+class _MockedAuthApiImpl implements AuthApi {
+
+  _MockedAuthApiImpl(this._networkService);
 
   final NetworkService _networkService;
 

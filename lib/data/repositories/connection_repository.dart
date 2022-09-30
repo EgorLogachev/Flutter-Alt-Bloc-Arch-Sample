@@ -1,8 +1,15 @@
 import 'package:archsampleapp/data/api/connection_api.dart';
 
-class ConnectionRepository {
+abstract class ConnectionRepository {
 
-  ConnectionRepository(this.api);
+  factory ConnectionRepository(ConnectionApi api) = _ConnectionRepositoryImpl;
+
+  Future<int> fetchSession();
+}
+
+class _ConnectionRepositoryImpl implements ConnectionRepository {
+
+  _ConnectionRepositoryImpl(this.api);
 
   final ConnectionApi api;
 

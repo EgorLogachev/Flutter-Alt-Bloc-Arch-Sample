@@ -8,17 +8,44 @@ import 'contacts_bloc.dart';
 import 'contacts_layout.dart';
 import 'contacts_router.dart';
 
-class ContactsScreen {
 
-  static const routeName = '/contacts';
+class ContactsRoute extends MaterialPageRoute {
 
-  static WidgetBuilder builder(ContactsRepository contRepository, ConnectionRepository connRepository) => (context) {
+  static const name = '/';
+
+  ContactsRoute(
+    ContactsRepository contactsRepo,
+    ConnectionRepository connectionRepo,
+    RouteSettings settings,
+  ) : super(
+          builder: (_) => _ContactsScreenWidget(
+            connectionRepo: connectionRepo,
+            contactsRepo: contactsRepo,
+          ),
+          settings: settings,
+        );
+}
+
+class _ContactsScreenWidget extends StatelessWidget {
+
+  final ContactsRepository contactsRepo;
+  final ConnectionRepository connectionRepo;
+
+  const _ContactsScreenWidget({
+    super.key,
+    required this.contactsRepo,
+    required this.connectionRepo,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return BlocProvider<ContactsBloc>(
       child: ContactsLayout(),
-      create: () => ContactsBloc(contRepository, ConnectionBloc(connRepository)),
+      create: () => ContactsBloc(contactsRepo, ConnectionBloc(connectionRepo)),
       router: ContactsRouter().onRoute,
     );
-  };
+
+  }
 }
 
 
