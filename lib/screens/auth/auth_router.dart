@@ -14,15 +14,13 @@ class AuthRouter extends ScreenRouter {
 
   static final _routesMapper = <String, BlocRouter>{
     contactsRoute : (context, routeName, args) {
-      return Navigator.of(context).pushReplacementNamed(routeName, arguments: args);
+      return Navigator.of(context).pushReplacementNamed(routeName!, arguments: args);
     },
-    closeScreenRoute : (context, routeName, args) {
+    closeScreenRoute : (context, routeName, args) async {
       Navigator.of(context).pop(args);
-      return null;
     },
-    closeAppRoute : (context, routeName, args) {
+    closeAppRoute : (context, routeName, args) async {
       SystemNavigator.pop();
-      return null;
     },
   };
 }

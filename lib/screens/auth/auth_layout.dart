@@ -42,23 +42,24 @@ class _AuthLayoutState extends State<AuthLayout> {
                   ),
                   TextField(
                     controller: _passwordController,
-                    decoration: InputDecoration(hintText: 'Password (Optional)'),
+                    decoration:
+                        InputDecoration(hintText: 'Password (Optional)'),
                     obscureText: true,
                   ),
                   SizedBox(
                     height: 8.0,
                   ),
-                  BlocBuilder<AuthBloc, BadCredentialsState>(builder: (_, state) {
+                  BlocBuilder<AuthBloc, BadCredentialsState?>(
+                      builder: (_, state) {
                     return state == null
                         ? Container()
                         : Text(
-                      'You have entered an invalid email or password',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .body1
-                          .copyWith(color: Colors.redAccent),
-                    );
+                            'You have entered an invalid email or password',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(color: Colors.redAccent),
+                          );
                   }),
                   SizedBox(
                     height: 8.0,
@@ -67,23 +68,24 @@ class _AuthLayoutState extends State<AuthLayout> {
                       width: double.infinity,
                       child: BlocBuilder<AuthBloc, bool>(
                         builder: (_, progress) {
-                          return RaisedButton(
+                          return ElevatedButton(
                               child: progress
                                   ? SizedBox(
-                                child: CircularProgressIndicator(),
-                                width: 24.0,
-                                height: 24.0,
-                              )
+                                      child: CircularProgressIndicator(),
+                                      width: 24.0,
+                                      height: 24.0,
+                                    )
                                   : Text('Sign In'),
                               onPressed: () {
-                                Provider.of<AuthBloc>(context).signIn(_emailController.text, _passwordController.text);
+                                Provider.of<AuthBloc>(context).signIn(
+                                    _emailController.text,
+                                    _passwordController.text);
                               });
                         },
                       ))
                 ],
               ),
-            ))
-    );
+            )));
   }
 
   @override

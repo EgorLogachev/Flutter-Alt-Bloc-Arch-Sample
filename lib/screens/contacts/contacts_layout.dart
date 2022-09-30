@@ -31,7 +31,7 @@ class ContactsLayout extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     contact.name,
-                                    style: Theme.of(context).textTheme.display2,
+                                    style: Theme.of(context).textTheme.displayMedium,
                                   ),
                                 ),
                                 SizedBox(

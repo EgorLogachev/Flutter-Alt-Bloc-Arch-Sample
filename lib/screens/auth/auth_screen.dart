@@ -11,7 +11,8 @@ class AuthScreen {
   static const routeName = '/auth';
 
   static WidgetBuilder builder(AuthRepository repository) => (context) {
-    final extraData = ModalRoute.of(context).settings.arguments;
+    //todo change this
+    final extraData = ModalRoute.of(context)?.settings.arguments;
     return BlocProvider(
       child: AuthLayout(),
       create: () => AuthBloc(repository, extraData: extraData),

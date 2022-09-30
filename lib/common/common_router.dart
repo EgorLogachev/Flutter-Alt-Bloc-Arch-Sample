@@ -7,13 +7,14 @@ import '../screens/auth/auth_screen.dart';
 class ScreenRouter with ErrorsRouter implements BaseRouter {
   ScreenRouter(this._routesMap);
 
-  final Map<String, Future Function(BuildContext, String, dynamic)> _routesMap;
+  final Map<String, BlocRouter> _routesMap;
 
   @override
-  Future onRoute(BuildContext context, String name, args) {
-    return _routesMap.containsKey(name) ? _routesMap[name](context, name, args) : super.onRoute(context, name, args);
+  Future<T?> onRoute<T>(BuildContext context, String? name, args) {
+    return _routesMap.containsKey(name)
+        ? _routesMap[name]!(context, name, args) as Future<T?>
+        : super.onRoute(context, name, args);
   }
-
 }
 
 mixin ErrorsRouter implements BaseRouter {
@@ -29,11 +30,11 @@ mixin ErrorsRouter implements BaseRouter {
   };
 
   @override
-  Future onRoute(BuildContext context, String name, dynamic args) {
+  Future<T?> onRoute<T>(BuildContext context, String? name, args) {
     if (!_routesMapper.containsKey(name) && isInDebugMode) {
       throw FlutterError('Handler for route with name: $name and arguments: $args wasn\'t defined in app');
     }
-    return _routesMapper[name].call(context, name, args);
+    return _routesMapper[name]!.call(context, name, args) as Future<T?>;
   }
 }
 
@@ -56,5 +57,5 @@ Future showUnexpectedErrorDialog(BuildContext context) {
 }
 
 abstract class BaseRouter {
-  Future onRoute(BuildContext context, String name, dynamic args);
+  Future<T?> onRoute<T>(BuildContext context, String? name, dynamic args);
 }

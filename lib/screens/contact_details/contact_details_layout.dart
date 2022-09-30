@@ -32,7 +32,7 @@ class ContactDetailsLayout extends StatelessWidget {
                   ),
                   Text(
                     _contact.name,
-                    style: Theme.of(context).textTheme.display1.copyWith(color: Colors.black87),
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(color: Colors.black87),
                   ),
                   Expanded(
                     child: Container(),

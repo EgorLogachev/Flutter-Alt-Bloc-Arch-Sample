@@ -1,7 +1,7 @@
-import 'package:archsampleapp/data/network/network_errors.dart';
 import 'package:archsampleapp/data/repositories/auth_repository.dart';
 
 import '../../common/base_bloc.dart';
+import '../../data/api/auth_api_error.dart';
 import 'auth_router.dart';
 
 class AuthBloc extends BaseBloc {
@@ -9,13 +9,13 @@ class AuthBloc extends BaseBloc {
   final AuthRepository _repository;
 
   AuthBloc(this._repository, {this.extraData}) {
-    registerState<BadCredentialsState>();
+    registerState<BadCredentialsState?>();
   }
 
   final extraData;
 
   Future signIn(String email, String password) async {
-    addState<BadCredentialsState>(null);
+    addState<BadCredentialsState?>(null);
     try {
       showProgress();
       await _repository.signIn(email, password);
@@ -30,7 +30,7 @@ class AuthBloc extends BaseBloc {
   }
 
   @override
-  void handleError(Error error) {
+  void handleError(dynamic error) {
     if (error is BadCredentialsError) {
       addState<BadCredentialsState>(BadCredentialsState());
     } else {

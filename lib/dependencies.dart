@@ -8,15 +8,15 @@ import 'package:archsampleapp/data/repositories/contacts_repository.dart';
 
 mixin Dependencies {
 
-  NetworkService _networkService;
-  AuthApi _authApi;
-  ConnectionApi _connectionApi;
-  ContactsApi _contactsApi;
-  AuthRepository _authRepository;
-  ConnectionRepository _connectionRepository;
-  ContactsRepository _contactsRepository;
+  NetworkService? _networkService;
+  AuthApi? _authApi;
+  ConnectionApi? _connectionApi;
+  ContactsApi? _contactsApi;
+  AuthRepository? _authRepository;
+  ConnectionRepository? _connectionRepository;
+  ContactsRepository? _contactsRepository;
 
-  NetworkService get networkService => _networkService ??= NetworkService('http://some_base_url');
+  NetworkService get networkService => _networkService ??= NetworkService(baseUrl: 'http://some_base_url');
 
   AuthApi get authApi => _authApi ??= AuthApi(networkService);
 

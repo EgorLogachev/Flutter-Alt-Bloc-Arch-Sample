@@ -57,7 +57,7 @@ class ContactsApi {
     final result = MockDataGenerator([
       Option(List.generate(mixedNames.length, (index) => Contact(mixedNames[index])), weight: 10),
       Option(ConnectionError()),
-      Option(UnexpectedError())
+      Option(UnexpectedError(500, ""))
     ]).next();
     return Future.delayed(Duration(milliseconds: 500), () => result is Error ? throw result : result);
   }
