@@ -6,7 +6,7 @@ import '../connection_router.dart';
 
 class ContactsRouter extends ConnectionRouter {
 
-  static const contactDetailsRoute = ContactDetailsScreen.routeName;
+  static const contactDetailsRoute = ContactDetailsRoute.name;
 
   static final _routesMapper = <String, BlocRouter>{
     contactDetailsRoute : (context, routeName, args) {

@@ -45,9 +45,17 @@ const names = [
   'Zoe'
 ];
 
-class ContactsApi {
+abstract class ContactsApi {
 
-  ContactsApi(this._networkService);
+  factory ContactsApi(NetworkService _networkService) = _MockedContactsApiImpl;
+
+  Future<List<Contact>> fetchContacts();
+}
+
+
+class _MockedContactsApiImpl implements ContactsApi {
+
+  _MockedContactsApiImpl(this._networkService);
 
   final NetworkService _networkService;
 

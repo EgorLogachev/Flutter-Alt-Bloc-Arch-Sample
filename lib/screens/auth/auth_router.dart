@@ -1,14 +1,15 @@
 import 'package:alt_bloc/alt_bloc.dart';
 import 'package:archsampleapp/common/common_router.dart';
-import 'package:archsampleapp/screens/contacts/contacts_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+
+import '../contacts/contacts_screen.dart';
 
 class AuthRouter extends ScreenRouter {
 
   AuthRouter() : super(_routesMapper);
 
-  static const contactsRoute = ContactsScreen.routeName;
+  static const contactsRoute = ContactsRoute.name;
   static const closeScreenRoute = '/closeScreen';
   static const closeAppRoute = '/closeAppRoute';
 

@@ -1,11 +1,16 @@
 import 'package:archsampleapp/data/api/auth_api.dart';
 
-class AuthRepository {
+abstract class AuthRepository {
+  factory AuthRepository(AuthApi _api) = _AuthRepositoryImpl;
 
-  AuthRepository(this._api);
-  
+  Future<String> signIn(String email, String password);
+}
+
+class _AuthRepositoryImpl implements AuthRepository {
+  _AuthRepositoryImpl(this._api);
+
   final AuthApi _api;
 
-  Future<String> signIn(String email, String password) async => _api.signIn(email, password);
-  
+  Future<String> signIn(String email, String password) async =>
+      _api.signIn(email, password);
 }

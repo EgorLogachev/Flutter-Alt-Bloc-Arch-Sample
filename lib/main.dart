@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app.dart';
+import 'app_entry.dart';
 
 /// TODO-list
 /// - add dependency injection
@@ -8,7 +8,7 @@ import 'app.dart';
 /// - add network layer
 /// - add APIs
 
-void main() => runApp(SampleApp());
+void main() => runApp(AppEntry());
 
 bool get isInDebugMode {
   bool inDebugMode = false;

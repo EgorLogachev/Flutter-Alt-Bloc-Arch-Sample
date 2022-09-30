@@ -1,9 +1,17 @@
 import 'package:archsampleapp/data/api/contacts_api.dart';
 import 'package:archsampleapp/data/model/contact.dart';
 
-class ContactsRepository {
+abstract class ContactsRepository {
 
-  ContactsRepository(this._api);
+  factory ContactsRepository(ContactsApi _api) = _ContactsRepositoryImpl;
+
+  Future<List<Contact>> fetchContacts();
+}
+
+
+class _ContactsRepositoryImpl implements ContactsRepository {
+
+  _ContactsRepositoryImpl(this._api);
 
   final ContactsApi _api;
 

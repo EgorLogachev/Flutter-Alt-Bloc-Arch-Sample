@@ -8,7 +8,7 @@ class ConnectionRouter extends ScreenRouter {
 
   ConnectionRouter() : super(_routesMapper);
 
-  static const connectionRoute = ConnectionScreen.routeName;
+  static const connectionRoute = ConnectionRoute.name;
 
   static final _routesMapper = <String, BlocRouter>{
     connectionRoute : (context, routeName, args) {
