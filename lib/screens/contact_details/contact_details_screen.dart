@@ -13,7 +13,7 @@ class ContactDetailsScreen {
   static const routeName = '/contact-details';
 
   static WidgetBuilder builder(ConnectionRepository repository) => (context) {
-    final Contact contact = ModalRoute.of(context).settings.arguments;
+    final contact = ModalRoute.of(context)?.settings.arguments as Contact;
     return BlocProvider(
       child: ContactDetailsLayout(contact),
       create: () => ConnectionBloc(repository),

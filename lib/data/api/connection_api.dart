@@ -13,9 +13,9 @@ class ConnectionApi {
   Future<int> fetchSession() {
     var result = MockDataGenerator([
       Option(Random().nextInt(100), weight: 10),
-      Option(UnauthorizedError()),
+      Option(UnauthorizedError(401, "Token expired")),
       Option(ConnectionError()),
-      Option(UnexpectedError())
+      Option(UnexpectedError(500, ""))
     ]).next();
     return Future.delayed(Duration(milliseconds: 500), () => result is Error ? throw result : result);
   }

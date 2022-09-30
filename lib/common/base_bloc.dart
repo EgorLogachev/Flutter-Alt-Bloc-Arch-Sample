@@ -8,14 +8,15 @@ class BaseBloc extends Bloc with _CommonErrorsHandler {
     registerState<bool>(initialState: false);
   }
 
+  //todo change it
   void showProgress() => addState<bool>(true);
-
+  //todo change it
   void hideProgress() => addState<bool>(false);
 }
 
 mixin _CommonErrorsHandler on Bloc {
 
-  void handleError(Error error) {
+  void handleError(dynamic error) {
     if (error is ConnectionError) {
       addNavigation(routeName: ErrorsRouter.connectionErrorRoute);
     } else if (error is UnauthorizedError) {

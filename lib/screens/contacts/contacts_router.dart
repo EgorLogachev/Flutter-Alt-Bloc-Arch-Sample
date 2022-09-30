@@ -10,12 +10,14 @@ class ContactsRouter extends ConnectionRouter {
 
   static final _routesMapper = <String, BlocRouter>{
     contactDetailsRoute : (context, routeName, args) {
-      return Navigator.of(context).pushNamed(routeName, arguments: args);
+      return Navigator.of(context).pushNamed(routeName!, arguments: args);
     }
   };
 
   @override
-  Future onRoute(BuildContext context, String name, dynamic args) {
-    return _routesMapper.containsKey(name) ? _routesMapper[name](context, name, args) : super.onRoute(context, name, args);
+  Future<T?> onRoute<T>(BuildContext context, String? name, args) {
+    return _routesMapper.containsKey(name)
+        ? _routesMapper[name]!(context, name, args) as Future<T?>
+        : super.onRoute(context, name, args);
   }
 }

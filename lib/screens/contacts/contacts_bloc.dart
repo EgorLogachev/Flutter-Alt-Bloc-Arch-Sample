@@ -8,7 +8,7 @@ import 'contacts_router.dart';
 class ContactsBloc extends BaseBloc implements ConnectionBloc {
   ContactsBloc(this._repository, this._connectionBloc) {
     registerState<List<Contact>>(initialState: <Contact>[]);
-    addNavigationSource(_connectionBloc.navigationStream);
+    addNavigationSource(_connectionBloc.navigationStream!);
     getContacts();
   }
 

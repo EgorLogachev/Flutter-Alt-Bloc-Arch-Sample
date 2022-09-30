@@ -9,7 +9,7 @@ import 'screens/auth/auth_screen.dart';
 
 class SampleApp extends StatefulWidget {
 
-  const SampleApp({Key key}) : super(key: key);
+  const SampleApp({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _SampleAddState();
@@ -17,16 +17,14 @@ class SampleApp extends StatefulWidget {
 
 class _SampleAddState extends State<SampleApp> with Dependencies {
 
-  _SampleAddState() {
-    _routes = <String, WidgetBuilder>{
-      AuthScreen.routeName : AuthScreen.builder(authRepository),
-      ContactsScreen.routeName : ContactsScreen.builder(contactsRepository, connectionRepository),
-      ContactDetailsScreen.routeName : ContactDetailsScreen.builder(connectionRepository),
-      ConnectionScreen.routeName : ConnectionScreen.builder(),
-    };
-  }
-
-  Map<String, WidgetBuilder> _routes;
+  late Map<String, WidgetBuilder> _routes = <String, WidgetBuilder>{
+    AuthScreen.routeName: AuthScreen.builder(authRepository),
+    ContactsScreen.routeName:
+        ContactsScreen.builder(contactsRepository, connectionRepository),
+    ContactDetailsScreen.routeName:
+        ContactDetailsScreen.builder(connectionRepository),
+    ConnectionScreen.routeName: ConnectionScreen.builder(),
+  };
 
   @override
   Widget build(BuildContext context) {

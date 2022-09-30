@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class ConnectionLayout extends StatelessWidget {
-  const ConnectionLayout(this._iconData, this._label, {Key key}) : super(key: key);
+  const ConnectionLayout(this._iconData, this._label, {Key? key}) : super(key: key);
 
   final IconData _iconData;
   final String _label;
@@ -22,7 +22,7 @@ class ConnectionLayout extends StatelessWidget {
                   Text(
                     _label,
                     style: Theme
-                        .of(context).textTheme.display1.copyWith(color: Colors.black87),
+                        .of(context).textTheme.displayMedium?.copyWith(color: Colors.black87),
                     textAlign: TextAlign.center,
                   )
                 ], mainAxisAlignment: MainAxisAlignment.center)),
@@ -43,7 +43,7 @@ class ConnectionLayout extends StatelessWidget {
 }
 
 class _SplashIcon extends StatefulWidget {
-  const _SplashIcon(this._iconData, {Key key}) : super(key: key);
+  const _SplashIcon(this._iconData, {Key? key}) : super(key: key);
 
   final IconData _iconData;
 
@@ -55,7 +55,7 @@ class _SplashIconState extends State<_SplashIcon> {
   static const _iconSize = 100.0;
   static const _padding = 48.0;
 
-  Timer _timer;
+  Timer? _timer;
 
   @override
   Widget build(BuildContext context) {
@@ -72,10 +72,10 @@ class _SplashIconState extends State<_SplashIcon> {
   }
 
   InteractiveInkFeature _createSplash(BuildContext context) {
-    final RenderBox referenceBox = context.findRenderObject();
+    final RenderBox referenceBox = context.findRenderObject() as RenderBox;
     final Offset position = referenceBox.paintBounds.center;
     return InkRipple(
-        controller: Material.of(context),
+        controller: Material.of(context)!,
         referenceBox: referenceBox,
         position: position,
         color: Theme.of(context).splashColor,
