@@ -93,4 +93,3 @@ class UnauthorizedError extends ResponseError {
 class UnexpectedError extends ResponseError {
   UnexpectedError(super.statusCode, super.responseData);
 }
-

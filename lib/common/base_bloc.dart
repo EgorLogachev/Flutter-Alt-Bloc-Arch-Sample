@@ -1,28 +1,42 @@
 import 'package:alt_bloc/alt_bloc.dart';
 import 'package:archsampleapp/common/common_router.dart';
+import 'package:archsampleapp/common/common_states.dart';
 import 'package:archsampleapp/data/network/network_errors.dart';
 
 class BaseBloc extends Bloc with _CommonErrorsHandler {
 
   BaseBloc() {
-    registerState<bool>(initialState: false);
+    /// You can create common states for the all instances of Bloc
+    registerState<ProgressState>(initialState: ProgressState.hide());
   }
 
-  //todo change it
-  void showProgress() => addState<bool>(true);
-  //todo change it
-  void hideProgress() => addState<bool>(false);
+  void showProgress() => addState(ProgressState.show());
+
+  void hideProgress() => addState(ProgressState.hide());
 }
 
+/// Override [handleError], [onConnectionError], [onAuthorizationError], [onUnexpectedError] for your Bloc to change error handling
 mixin _CommonErrorsHandler on Bloc {
 
   void handleError(dynamic error) {
     if (error is ConnectionError) {
-      addNavigation(routeName: ErrorsRouter.connectionErrorRoute);
+      onConnectionError();
     } else if (error is UnauthorizedError) {
-      addNavigation(routeName: ErrorsRouter.unauthorizedErrorRoute);
+      onAuthorizationError();
     } else {
-      addNavigation(routeName: ErrorsRouter.unexpectedErrorRoute);
+      onUnexpectedError();
     }
+  }
+
+  void onConnectionError() {
+    addNavigation(routeName: ErrorsRouter.connectionErrorRoute);
+  }
+
+  void onAuthorizationError() {
+    addNavigation(routeName: ErrorsRouter.unauthorizedErrorRoute);
+  }
+
+  void onUnexpectedError() {
+    addNavigation(routeName: ErrorsRouter.unexpectedErrorRoute);
   }
 }

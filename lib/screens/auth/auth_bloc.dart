@@ -15,10 +15,12 @@ class AuthBloc extends BaseBloc {
   final extraData;
 
   Future signIn(String email, String password) async {
+    /// notify UI about data
     addState<BadCredentialsState?>(null);
     try {
       showProgress();
       await _useCase.signIn(email, password);
+      /// notify about navigation event
       addNavigation(
           routeName: extraData == null ? AuthRouter.contactsRoute : AuthRouter.closeScreenRoute,
           arguments: extraData);

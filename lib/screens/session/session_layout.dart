@@ -2,9 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-//todo rename it
-class ConnectionLayout extends StatelessWidget {
-  const ConnectionLayout(this._iconData, this._label, {Key? key}) : super(key: key);
+class SessionLayout extends StatelessWidget {
+  const SessionLayout(this._iconData, this._label, {Key? key}) : super(key: key);
 
   final IconData _iconData;
   final String _label;

@@ -32,7 +32,7 @@ class _SessionScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConnectionLayout(isCall ? Icons.call : Icons.chat,
+    return SessionLayout(isCall ? Icons.call : Icons.chat,
         isCall ? 'Call to ${contact.name}' : 'Chat request to ${contact.name}');
   }
 }
