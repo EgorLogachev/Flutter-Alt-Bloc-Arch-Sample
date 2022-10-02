@@ -11,6 +11,8 @@ import 'package:archsampleapp/screens/connection/connection_use_case.dart';
 import 'package:archsampleapp/screens/contact_details/contacts_details_use_case.dart';
 import 'package:archsampleapp/screens/contacts/contacts_use_case.dart';
 
+
+/// Dependencies Registration
 class Dependencies {
   final _dr = DependenciesRegistrar()
     ..register((_) => NetworkService(baseUrl: 'http://some_base_url'))

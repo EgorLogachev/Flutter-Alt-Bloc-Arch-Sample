@@ -45,4 +45,3 @@ class _AppEntryState extends State<AppEntry> with Dependencies {
     );
   }
 }
-

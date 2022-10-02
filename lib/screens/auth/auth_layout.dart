@@ -1,4 +1,5 @@
 import 'package:alt_bloc/alt_bloc.dart';
+import 'package:archsampleapp/common/common_states.dart';
 import 'package:flutter/material.dart';
 
 import 'auth_bloc.dart';
@@ -66,10 +67,10 @@ class _AuthLayoutState extends State<AuthLayout> {
                   ),
                   SizedBox(
                       width: double.infinity,
-                      child: BlocBuilder<AuthBloc, bool>(
-                        builder: (_, progress) {
+                      child: BlocBuilder<AuthBloc, ProgressState>(
+                        builder: (_, state) {
                           return ElevatedButton(
-                              child: progress
+                              child: state.inProgress
                                   ? SizedBox(
                                       child: CircularProgressIndicator(),
                                       width: 24.0,

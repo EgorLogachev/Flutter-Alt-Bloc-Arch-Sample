@@ -1,4 +1,5 @@
 import 'package:alt_bloc/alt_bloc.dart';
+import 'package:archsampleapp/common/common_states.dart';
 import 'package:archsampleapp/data/model/contact.dart';
 import 'package:flutter/material.dart';
 
@@ -64,9 +65,9 @@ class ContactsLayout extends StatelessWidget {
                     ));
               },
             ),
-            BlocBuilder<ContactsBloc, bool>(
-              builder: (_, progress) {
-                return progress ? Center(child: CircularProgressIndicator(),) : Container();
+            BlocBuilder<ContactsBloc, ProgressState>(
+              builder: (_, state) {
+                return state.inProgress ? Center(child: CircularProgressIndicator(),) : Container();
               },
             )
           ],

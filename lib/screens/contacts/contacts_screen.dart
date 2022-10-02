@@ -44,5 +44,3 @@ class _ContactsScreenWidget extends StatelessWidget {
 
   }
 }
-
-

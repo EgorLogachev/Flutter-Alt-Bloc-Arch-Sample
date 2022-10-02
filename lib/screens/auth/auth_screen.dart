@@ -30,6 +30,7 @@ class _AuthScreenWidget extends StatelessWidget {
     return BlocProvider(
       child: AuthLayout(),
       create: () => AuthBloc(useCase, extraData: extraData),
+      /// Each [BlocProvider] has separate callback to handle navigation
       router: AuthRouter().onRoute,
     );
   }

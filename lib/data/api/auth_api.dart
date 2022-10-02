@@ -18,6 +18,7 @@ class _MockedAuthApiImpl implements AuthApi {
   final NetworkService _networkService;
 
   Future<String> signIn(String email, String password) async {
+    /// Generator with random errors
     final result = MockDataGenerator([
       Option("success", weight: 10),
       Option(ConnectionError()),
