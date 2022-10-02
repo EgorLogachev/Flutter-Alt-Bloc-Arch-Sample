@@ -1,8 +1,7 @@
 import 'package:alt_bloc/alt_bloc.dart';
+import 'package:archsampleapp/screens/connection/connection_router.dart';
 import 'package:archsampleapp/screens/contact_details/contact_details_screen.dart';
 import 'package:flutter/widgets.dart';
-
-import '../connection_router.dart';
 
 class ContactsRouter extends ConnectionRouter {
 

@@ -1,7 +1,8 @@
+import 'package:archsampleapp/di/dependency_manager.dart';
 import 'package:archsampleapp/screens/auth/auth_screen.dart';
-import 'package:archsampleapp/screens/connection/connection_screen.dart';
 import 'package:archsampleapp/screens/contact_details/contact_details_screen.dart';
 import 'package:archsampleapp/screens/contacts/contacts_screen.dart';
+import 'package:archsampleapp/screens/session/session_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'dependencies.dart';
@@ -16,11 +17,11 @@ class AppEntry extends StatefulWidget {
 
 class _AppEntryState extends State<AppEntry> with Dependencies {
 
-  final _routesMap = <String, Route Function(Dependencies, RouteSettings)>{
-    AuthRoute.name: (dp, settings) => AuthRoute(dp.authRepository, settings),
-    ContactsRoute.name: (dp, settings) => ContactsRoute(dp.contactsRepository, dp.connectionRepository, settings),
-    ContactDetailsRoute.name: (dp, settings) => ContactDetailsRoute(dp.connectionRepository, settings),
-    ConnectionRoute.name: (dp, settings) => ConnectionRoute(settings),
+  final _routesMap = <String, Route Function(DependenciesProvider, RouteSettings)>{
+    AuthRoute.name: (dp, settings) => AuthRoute(dp.signInUseCase, settings),
+    ContactsRoute.name: (dp, settings) => ContactsRoute(dp.contactsUseCase, settings),
+    ContactDetailsRoute.name: (dp, settings) => ContactDetailsRoute(dp.contactDetailsUseCase, settings),
+    SessionRoute.name: (dp, settings) => SessionRoute(settings),
   };
 
   @override
@@ -32,7 +33,7 @@ class _AppEntryState extends State<AppEntry> with Dependencies {
       ),
       initialRoute: AuthRoute.name,
       onGenerateRoute: (RouteSettings settings) {
-        return _routesMap[settings.name]?.call(this, settings) ??
+        return _routesMap[settings.name]?.call(provider, settings) ??
             MaterialPageRoute(
               builder: (_) => Scaffold(
                 body: Center(

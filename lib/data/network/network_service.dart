@@ -7,9 +7,6 @@ import 'package:dio_smart_retry/dio_smart_retry.dart';
 
 import 'network_errors.dart';
 
-///ToDo:
-/// - think about http 2 adapter (https://github.com/flutterchina/dio/tree/master/plugins/http2_adapter)
-
 class RequestMethod {
   static const post = 'POST';
   static const get = 'GET';
