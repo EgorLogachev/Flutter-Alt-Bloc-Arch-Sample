@@ -6,6 +6,8 @@ abstract class ContactsRepository {
   factory ContactsRepository(ContactsApi _api) = _ContactsRepositoryImpl;
 
   Future<List<Contact>> fetchContacts();
+
+  Future<String> fetchDetails(Contact contact);
 }
 
 
@@ -16,4 +18,7 @@ class _ContactsRepositoryImpl implements ContactsRepository {
   final ContactsApi _api;
 
   Future<List<Contact>> fetchContacts() async => _api.fetchContacts();
+
+  @override
+  Future<String> fetchDetails(Contact contact) => _api.fetchDetails(contact);
 }

@@ -1,4 +1,4 @@
-import 'package:archsampleapp/data/repositories/auth_repository.dart';
+import 'package:archsampleapp/screens/auth/auth_use_case.dart';
 
 import '../../common/base_bloc.dart';
 import '../../data/api/auth_api_error.dart';
@@ -6,9 +6,9 @@ import 'auth_router.dart';
 
 class AuthBloc extends BaseBloc {
 
-  final AuthRepository _repository;
+  final SignInUseCase _useCase;
 
-  AuthBloc(this._repository, {this.extraData}) {
+  AuthBloc(this._useCase, {this.extraData}) {
     registerState<BadCredentialsState?>();
   }
 
@@ -18,7 +18,7 @@ class AuthBloc extends BaseBloc {
     addState<BadCredentialsState?>(null);
     try {
       showProgress();
-      await _repository.signIn(email, password);
+      await _useCase.signIn(email, password);
       addNavigation(
           routeName: extraData == null ? AuthRouter.contactsRoute : AuthRouter.closeScreenRoute,
           arguments: extraData);

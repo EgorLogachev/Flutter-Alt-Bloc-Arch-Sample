@@ -5,30 +5,36 @@ import 'package:archsampleapp/data/network/network_service.dart';
 import 'package:archsampleapp/data/repositories/auth_repository.dart';
 import 'package:archsampleapp/data/repositories/connection_repository.dart';
 import 'package:archsampleapp/data/repositories/contacts_repository.dart';
+import 'package:archsampleapp/di/dependency_manager.dart';
+import 'package:archsampleapp/screens/auth/auth_use_case.dart';
+import 'package:archsampleapp/screens/connection/connection_use_case.dart';
+import 'package:archsampleapp/screens/contact_details/contacts_details_use_case.dart';
+import 'package:archsampleapp/screens/contacts/contacts_use_case.dart';
 
-mixin Dependencies {
+class Dependencies {
+  final _dr = DependenciesRegistrar()
+    ..register((_) => NetworkService(baseUrl: 'http://some_base_url'))
+    ..register((dp) => AuthApi(dp.obtain<NetworkService>()))
+    ..register((dp) => ConnectionApi(dp.obtain<NetworkService>()))
+    ..register((dp) => ContactsApi(dp.obtain<NetworkService>()))
+    ..register((dp) => AuthRepository(dp.obtain<AuthApi>()))
+    ..register((dp) => ConnectionRepository(dp.obtain<ConnectionApi>()))
+    ..register((dp) => ContactsRepository(dp.obtain<ContactsApi>()))
+    ..register((dp) => SignInUseCase(dp.obtain<AuthRepository>()))
+    ..register((dp) => ConnectionUseCase(dp.obtain<ConnectionRepository>()))
+    ..register((dp) => ContactsUseCase(dp.obtain<ConnectionUseCase>(), dp.obtain<ContactsRepository>()))
+    ..register((dp) => ContactDetailsUseCase(dp.obtain<ConnectionUseCase>(), dp.obtain<ContactsRepository>()));
 
-  NetworkService? _networkService;
-  AuthApi? _authApi;
-  ConnectionApi? _connectionApi;
-  ContactsApi? _contactsApi;
-  AuthRepository? _authRepository;
-  ConnectionRepository? _connectionRepository;
-  ContactsRepository? _contactsRepository;
+  DependenciesProvider get provider => _dr.provider;
 
-  NetworkService get networkService => _networkService ??= NetworkService(baseUrl: 'http://some_base_url');
+  void dispose() => _dr.dispose();
+}
 
-  AuthApi get authApi => _authApi ??= AuthApi(networkService);
+extension AppDependencyProvider on DependenciesProvider {
 
-  ConnectionApi get connectionApi => _connectionApi ??= ConnectionApi(networkService);
+  SignInUseCase get signInUseCase => obtain<SignInUseCase>();
 
-  ContactsApi get contactsApi => _contactsApi ??= ContactsApi(networkService);
+  ContactsUseCase get contactsUseCase => obtain<ContactsUseCase>();
 
-  AuthRepository get authRepository => _authRepository ??= AuthRepository(authApi);
-
-  ConnectionRepository get connectionRepository => _connectionRepository ??= ConnectionRepository(connectionApi);
-
-  ContactsRepository get contactsRepository => _contactsRepository ??= ContactsRepository(contactsApi);
-
-
+  ContactDetailsUseCase get contactDetailsUseCase => obtain<ContactDetailsUseCase>();
 }
