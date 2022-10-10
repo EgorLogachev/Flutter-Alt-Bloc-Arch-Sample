@@ -1,8 +1,8 @@
-import 'package:archsampleapp/di/dependency_manager.dart';
 import 'package:archsampleapp/screens/auth/auth_screen.dart';
 import 'package:archsampleapp/screens/contact_details/contact_details_screen.dart';
 import 'package:archsampleapp/screens/contacts/contacts_screen.dart';
 import 'package:archsampleapp/screens/session/session_screen.dart';
+import 'package:dependency_provider/dependency_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'dependencies.dart';

@@ -5,11 +5,11 @@ import 'package:archsampleapp/data/network/network_service.dart';
 import 'package:archsampleapp/data/repositories/auth_repository.dart';
 import 'package:archsampleapp/data/repositories/connection_repository.dart';
 import 'package:archsampleapp/data/repositories/contacts_repository.dart';
-import 'package:archsampleapp/di/dependency_manager.dart';
 import 'package:archsampleapp/screens/auth/auth_use_case.dart';
 import 'package:archsampleapp/screens/connection/connection_use_case.dart';
 import 'package:archsampleapp/screens/contact_details/contacts_details_use_case.dart';
 import 'package:archsampleapp/screens/contacts/contacts_use_case.dart';
+import 'package:dependency_provider/dependency_provider.dart';
 
 
 /// Dependencies Registration
